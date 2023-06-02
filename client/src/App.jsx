@@ -1,22 +1,28 @@
-import { useState } from "react";
-
 import "./App.css";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
-import AuthPage from "./AuthPage";
 import ChatsPage from "./ChatsPage";
+import Register from "./Register";
+import ProtectedRoute from "./ProtectedRoute";
+import { useSelector } from "react-redux";
 
 function App() {
-  const USER = localStorage.getItem("USER");
-  const [user, setUser] = useState(JSON.parse(USER));
-  if (user) {
-    localStorage.setItem("USER", JSON.stringify(user));
-  }
-
-  if (!user) {
-    return <AuthPage onAuth={(user) => setUser(user)} />;
-  } else {
-    return <ChatsPage user={user} />;
-  }
+  const user = useSelector((state) => state.user);
+  return (
+    <Router>
+      <Routes>
+        <Route
+          path="/"
+          element={
+            <ProtectedRoute isAuthenticated={!!user}>
+              <ChatsPage />
+            </ProtectedRoute>
+          }
+        ></Route>
+        <Route path="/register" element={<Register />}></Route>
+      </Routes>
+    </Router>
+  );
 }
 
 export default App;

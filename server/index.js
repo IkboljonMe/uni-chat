@@ -9,14 +9,14 @@ const app = express();
 app.use(express.json());
 app.use(cors({ origin: true }));
 
-app.post("/authenticate", async (req, res) => {
+app.post("/register", async (req, res) => {
   const { userName, email, firstName, lastName } = req.body;
   const validationError = validateInputs(userName, email, firstName, lastName);
   if (validationError) {
     return res.status(400).json(validationError);
   }
   try {
-    const response = await axios.put(
+    const response = await axios.post(
       "https://api.chatengine.io/users/",
       {
         username: userName,
