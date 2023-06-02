@@ -1,5 +1,6 @@
 const express = require("express");
 const cors = require("cors");
+const validateInputs = require("./validator");
 require("dotenv").config();
 const axios = require("axios");
 
@@ -10,14 +11,18 @@ app.use(cors({ origin: true }));
 
 app.post("/authenticate", async (req, res) => {
   console.log(process.env.CHAT_ENGINE_PRIVATE_KEY);
-  const { username } = req.body;
+  const { userName, email, firstName, lastName } = req.body;
+
   try {
+    validateInputs(userName, email, firstName, lastName);
     const response = await axios.put(
       "https://api.chatengine.io/users/",
       {
-        username: username,
-        first_name: username,
-        secret: username,
+        username: userName,
+        first_name: firstName,
+        email: email,
+        last_name: lastName,
+        secret: userName,
       },
       {
         headers: { "private-key": process.env.CHAT_ENGINE_PRIVATE_KEY },

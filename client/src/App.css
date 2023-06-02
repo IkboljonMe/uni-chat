@@ -51,7 +51,7 @@ body {
   padding-bottom: 12px;
 }
 .auth-label {
-  position: absolute;
+  /* position: absolute; */
   top: 8px;
   left: 18px;
   font-size: 11px;
