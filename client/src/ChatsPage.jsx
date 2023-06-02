@@ -1,5 +1,8 @@
 import { PrettyChatWindow } from "react-chat-engine-pretty";
 const ChatsPage = (props) => {
+  const handleLogout = () => {
+    localStorage.removeItem("USER");
+  };
   return (
     <div style={{ height: "100vh" }}>
       <PrettyChatWindow
@@ -8,6 +11,7 @@ const ChatsPage = (props) => {
         secret={props.user.secret}
         style={{ height: "100%" }}
       />
+      <button style={{ height: "50px" }} onClick={handleLogout}></button>
     </div>
   );
 };

@@ -5,6 +5,7 @@ const AuthPage = (props) => {
   const [email, setEmail] = useState("");
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
+  const [error, setError] = useState("");
   const onSubmit = (e) => {
     e.preventDefault();
     axios
@@ -15,7 +16,10 @@ const AuthPage = (props) => {
         lastName,
       })
       .then((r) => props.onAuth({ ...r.data, secret: userName }))
-      .catch((err) => console.log(err));
+      .catch((err) => {
+        setError(err.response.data.message);
+        throw err;
+      });
   };
 
   return (
@@ -23,6 +27,11 @@ const AuthPage = (props) => {
       <form onSubmit={onSubmit} className="form-card">
         <div className="form-title">Welcome 👋</div>
         <div className="form-subtitle">Set a username to get started</div>
+        {error && (
+          <div style={{ color: "red" }} className="form-subtitle">
+            {error}!
+          </div>
+        )}
         <div className="auth">
           <div>
             <div className="auth-label">Username</div>

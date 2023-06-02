@@ -10,11 +10,12 @@ app.use(express.json());
 app.use(cors({ origin: true }));
 
 app.post("/authenticate", async (req, res) => {
-  console.log(process.env.CHAT_ENGINE_PRIVATE_KEY);
   const { userName, email, firstName, lastName } = req.body;
-
+  const validationError = validateInputs(userName, email, firstName, lastName);
+  if (validationError) {
+    return res.status(400).json(validationError);
+  }
   try {
-    validateInputs(userName, email, firstName, lastName);
     const response = await axios.put(
       "https://api.chatengine.io/users/",
       {
@@ -31,7 +32,6 @@ app.post("/authenticate", async (req, res) => {
     return res.status(201).json(response.data);
   } catch (err) {
     console.log(err);
-    return res.status(401).json("Error request");
   }
 });
 
