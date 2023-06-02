@@ -1,13 +1,10 @@
 import axios from "axios";
-import React from "react";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 const Login = (props) => {
   const navigate = useNavigate();
   const [userName, setUserName] = useState("");
   const [email, setEmail] = useState("");
-  const [firstName, setFirstName] = useState("");
-  const [lastName, setLastName] = useState("");
   const [error, setError] = useState("");
   const onSubmit = (e) => {
     e.preventDefault();
@@ -15,8 +12,6 @@ const Login = (props) => {
       .post("http://localhost:3001/register", {
         userName,
         email,
-        firstName,
-        lastName,
       })
       .then((r) => {
         props.setUser(r.data);

@@ -14,7 +14,7 @@ function App() {
         <Route
           path="/"
           element={
-            <ProtectedRoute isAuthenticated={!!user}>
+            <ProtectedRoute isAuthenticated={user}>
               <ChatsPage />
             </ProtectedRoute>
           }

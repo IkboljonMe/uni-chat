@@ -23,6 +23,7 @@ const Register = (props) => {
       })
       .then((r) => {
         dispatch(setUser(r.data));
+        console.log("HEre_______", r.data);
         localStorage.setItem("USER", JSON.stringify(r.data));
         navigate("/");
       })

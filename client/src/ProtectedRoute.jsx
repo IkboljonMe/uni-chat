@@ -3,9 +3,11 @@ import { useNavigate } from "react-router-dom";
 
 const ProtectedRoute = ({ isAuthenticated, children }) => {
   const navigate = useNavigate();
+  console.log("Protected", !isAuthenticated);
+
   useEffect(() => {
     if (!isAuthenticated) {
-      navigate("/login");
+      navigate("/register");
     }
   }, [isAuthenticated, navigate]);
   return <>{children}</>;
