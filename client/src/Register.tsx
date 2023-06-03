@@ -4,7 +4,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { setUser } from "../redux/slices/userSlices";
-const Register = (props) => {
+const Register = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [userName, setUserName] = useState("");

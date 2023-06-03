@@ -10,7 +10,6 @@ const ChatsPage = () => {
     dispatch(clearUser());
     navigate("/register");
   };
-  console.log(user.username, user.secret);
   if (!user) {
     return null;
   }
@@ -20,7 +19,7 @@ const ChatsPage = () => {
       <PrettyChatWindow
         projectId={import.meta.env.VITE_CHAT_ENGINE_ID}
         username={user.username}
-        secret={user.username}
+        secret={import.meta.env.VITE_CHAT_ENGINE_SECRET}
         style={{ height: "100vh" }}
       />
 

@@ -5,7 +5,6 @@ require("dotenv").config();
 const axios = require("axios");
 
 const app = express();
-// app.use(dotenv.config());
 app.use(express.json());
 app.use(cors({ origin: true }));
 
@@ -23,7 +22,7 @@ app.post("/register", async (req, res) => {
         first_name: firstName,
         email: email,
         last_name: lastName,
-        secret: userName,
+        secret: process.env.CHAT_ENGINE_SECRET,
       },
       {
         headers: { "private-key": process.env.CHAT_ENGINE_PRIVATE_KEY },
