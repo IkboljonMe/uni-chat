@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { setUser } from "../redux/slices/userSlices";
 import { Link } from "react-router-dom";
-import Login from "./Login";
+
 const Register = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -19,11 +19,12 @@ const Register = () => {
   const onSubmit = (e) => {
     e.preventDefault();
     axios
-      .post("http://localhost:3001/register", {
+      .post("http://localhost:3333/register", {
         userName,
         email,
         firstName,
         lastName,
+        password,
       })
       .then((r) => {
         dispatch(setUser(r.data));
