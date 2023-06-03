@@ -18,11 +18,12 @@ const ChatsPage = () => {
   return (
     <div style={{ height: "100vh" }}>
       <PrettyChatWindow
-        projectId="5bca9f7a-0e44-4cc9-828c-3c11b937a9f7"
-        username="IkboljonMe"
-        secret="pbkdf2_sha256$216000$Y7j36MXc8sxb$7n0V7KihrbgiUPh2/FlSNWyUp2+rfClDXk7yO4jX/k4="
+        projectId={import.meta.env.VITE_CHAT_ENGINE_ID}
+        username={user.username}
+        secret={user.username}
         style={{ height: "100vh" }}
       />
+
       <button style={{ height: "50px" }} onClick={handleLogout}></button>
     </div>
   );
