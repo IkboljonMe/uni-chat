@@ -5,6 +5,7 @@ import ChatsPage from "./ChatsPage";
 import Register from "./Register";
 import ProtectedRoute from "./ProtectedRoute";
 import { useSelector } from "react-redux";
+import Login from "./Login";
 
 function App() {
   const user = useSelector((state) => state.user);
@@ -20,6 +21,7 @@ function App() {
           }
         ></Route>
         <Route path="/register" element={<Register />}></Route>
+        <Route path="/login" element={<Login />}></Route>
       </Routes>
     </Router>
   );

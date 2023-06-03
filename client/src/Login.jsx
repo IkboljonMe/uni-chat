@@ -1,62 +1,52 @@
-import axios from "axios";
+// import axios from "axios";
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
-const Login = (props) => {
-  const navigate = useNavigate();
-  const [userName, setUserName] = useState("");
-  const [email, setEmail] = useState("");
-  const [error, setError] = useState("");
-  const onSubmit = (e) => {
-    e.preventDefault();
-    axios
-      .post("http://localhost:3001/register", {
-        userName,
-        email,
-      })
-      .then((r) => {
-        props.setUser(r.data);
-        localStorage.setItem("USER", JSON.stringify(r.data));
-        navigate("/");
-      })
-      .catch((err) => {
-        setError(err.response.data.message);
-        throw err;
-      });
-  };
+import { Link } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
+
+const Login = () => {
+  // const navigate = useNavigate();
+  const [userNameOrEmail, setUserNameOrEmail] = useState("");
+  const [password, setPassword] = useState("");
+  // const [error, setError] = useState("");
 
   return (
     <div className="background">
-      <form onSubmit={onSubmit} className="form-card">
-        <div className="form-title">Welcome 👋</div>
-        <div className="form-subtitle">Set a username to get started</div>
-        {error && (
+      <form className="form-card">
+        <div className="form-title">Login</div>
+        <div className="form-subtitle">Welcome to Uni Messenger</div>
+        {/* {error && (
           <div style={{ color: "red" }} className="form-subtitle">
             {error}!
           </div>
-        )}
+        )} */}
         <div className="auth">
           <div>
-            <div className="auth-label">Username</div>
+            <div className="auth-label">Username or Email</div>
             <input
-              value={userName}
-              onChange={(e) => setUserName(e.target.value)}
+              value={userNameOrEmail}
+              onChange={(e) => setUserNameOrEmail(e.target.value)}
               className="auth-input"
               name="username"
+              type="email"
             />
           </div>
           <div>
-            <div className="auth-label">Email</div>
+            <div className="auth-label">Password</div>
             <input
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
               className="auth-input"
-              name="email"
+              name="password"
+              type="password"
             />
           </div>
-
           <button className="auth-button" type="submit">
             Enter
           </button>
+          <h4 className="register">
+            Don&apos;t you have an account?{" "}
+            <Link to="/register">Register here</Link>
+          </h4>
         </div>
       </form>
     </div>
