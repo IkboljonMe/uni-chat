@@ -1,5 +1,5 @@
 import axios from "axios";
-import React from "react";
+
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
@@ -19,7 +19,7 @@ const Register = () => {
   const onSubmit = (e) => {
     e.preventDefault();
     axios
-      .post("http://localhost:3333/register", {
+      .post(`${import.meta.env.VITE_BASE}/register`, {
         userName,
         email,
         firstName,

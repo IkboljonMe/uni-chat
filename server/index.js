@@ -4,7 +4,7 @@ const cors = require("cors");
 const validateInputs = require("./validator");
 const axios = require("axios");
 const databaseConnection = require("./db/databaseConnection");
-const authRoute = require("./routers/authRoutE");
+const authRoute = require("./routers/authRoute");
 
 const app = express();
 
